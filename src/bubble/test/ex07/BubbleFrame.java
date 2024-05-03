@@ -1,4 +1,4 @@
-package bubble.test.ex03;
+package bubble.test.ex07;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -24,13 +24,14 @@ public class BubbleFrame extends JFrame {
 
 	private void initData() {
 		// todo 이미지 변경
-		backgroundMap = new JLabel(new ImageIcon("img/backgroundMapService.png"));
+		backgroundMap = new JLabel(new ImageIcon("img/backgroundMap.png"));
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Frame --> root Panel
 		setContentPane(backgroundMap); // add 처리
 		setSize(1000, 640);
 
 		player = new Player();
+
 	}
 
 	private void setInitLayout() {
@@ -54,17 +55,33 @@ public class BubbleFrame extends JFrame {
 
 				case KeyEvent.VK_LEFT:
 					// 구현
-					player.left();
-
+					// 왼쪽으로 방향키 누르고 있다면
+					// key 이벤트가 계속 <- <- <- <-
+					// 왼쪽 상태가 아니라면
+					// 왼쪽 벽에 충돌 한게 아니라면
+					if (!player.isLeft() && !player.isLeftWallCrash()) {
+						player.left();
+					}
 					break;
 				case KeyEvent.VK_RIGHT:
 					// 구현
-					player.right();
+					if (!player.isRight() && !player.isRightWallCrash()) {
+						player.right();
+					}
 					break;
 				case KeyEvent.VK_UP:
 					// 구현
-					player.up();
+					if (!player.isUp()) {
+						player.up();
+					}
 					break;
+				case KeyEvent.VK_SPACE:
+
+					add(new Bubble(player));
+					break;
+				default:
+					break;
+
 				}
 			} // end of pressed
 
@@ -75,14 +92,14 @@ public class BubbleFrame extends JFrame {
 
 				case KeyEvent.VK_LEFT:
 					// 구현
+					// 왼쪽으로 가는 상태 멈춤
 					player.setLeft(false);
-
 					break;
 				case KeyEvent.VK_RIGHT:
 					// 구현
+					// 오른쪽으로 가는 상태 멈춤
 					player.setRight(false);
 					break;
-			
 
 				}
 
