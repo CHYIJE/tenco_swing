@@ -1,4 +1,4 @@
-package bubble;
+package bubble.test.ex10;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -6,9 +6,6 @@ import java.awt.event.KeyEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import bubble.components.Enemy;
-import bubble.components.Player;
 
 public class BubbleFrame extends JFrame {
 	
@@ -97,8 +94,6 @@ public class BubbleFrame extends JFrame {
 
 				}
 			} // end of pressed
-			
-			
 
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -120,7 +115,6 @@ public class BubbleFrame extends JFrame {
 
 			} // end of released
 		});
-		
 	}
 	// getter
 	public Player getPlayer() {
